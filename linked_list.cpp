@@ -37,6 +37,7 @@ class linkedlist{
         n->next = head;
         head = n;
     }
+    
     void print(){
       Node* temp = head;
         while(temp){
@@ -46,15 +47,60 @@ class linkedlist{
         }
         
     }
+    void insert_before_position(int data,int k){
+        Node* temp = new Node(data);
+        Node* first = head;
+        while(k>2){
+           first = first->next;
+            k--;
+        }
+        temp->next = first->next;
+        first->next = temp;
+       
+        
+    }
+   
+    void insert_at_end(int data){
+        Node* temp = new Node(data);
+      if (head == nullptr){
+        head = temp;
+        tail = temp;
+        return;
+      }
+      tail->next = temp;
+      tail = temp;
+      
+    }
+     void insert_at_middle(int data,int k){
+        Node* temp = new Node(data);
+        Node* first = head;
+        
+        while(k>1){
+           first = first->next;
+            k--;
+            if(first->next == nullptr){
+                insert_at_end(data);
+                return;
+            }
+        }
+        temp->next = first->next;
+        first->next = temp;
+       
+        
+    }
     
 };
 int main(){
     linkedlist ll;
     Node* root = new Node;
-    
+    int k;
+    cin>>k;
     ll.insert_at_front(2);
     ll.insert_at_front(3);
     ll.insert_at_front(4);
+    ll.insert_at_middle(1,k);
+    ll.insert_before_position(6,k);
+    ll.insert_at_end(5);
     ll.print();
     
     return 0;
