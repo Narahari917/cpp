@@ -59,6 +59,29 @@ class linkedlist{
        
         
     }
+    void deleteNode(int k){
+    Node* temp = head;
+        if(k==1){
+            head = temp->next;
+            return;
+        }
+        k--;
+        while(k>1){
+            temp = temp->next;
+            k--;
+            if(temp == NULL ){
+            cout<<"position error"<<endl;
+        }
+        }
+        
+        if(temp->next->next==nullptr){
+            tail = temp;
+            tail->next = nullptr;
+            return;
+        }
+        temp->next = temp->next->next;
+        
+    }
    
     void insert_at_end(int data){
         Node* temp = new Node(data);
@@ -101,6 +124,9 @@ int main(){
     ll.insert_at_middle(1,k);
     ll.insert_before_position(6,k);
     ll.insert_at_end(5);
+    ll.deleteNode(2);
+    ll.deleteNode(1);
+    ll.deleteNode(4);
     ll.print();
     
     return 0;
